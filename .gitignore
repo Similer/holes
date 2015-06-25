@@ -2,3 +2,4 @@
 *.tlog
 holes/ipch/
 holes/holes/Debug/
+holes/holes/Release/
