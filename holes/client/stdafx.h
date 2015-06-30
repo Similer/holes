@@ -19,10 +19,5 @@
 #include <winsock2.h>
 
 
-#include "Logger.h"
-
-
-#include "IocpCore.h"
-#include "Thread.h"			
 
 // TODO: reference additional headers your program requires here
