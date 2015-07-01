@@ -6,6 +6,13 @@
 
 int _tmain(int argc, _TCHAR* argv[])
 {
+	WSABUF databuf;
+	char message[] = "Newdfsdff";
+	DWORD sendBytes = 0;
+
+	WSAEVENT event;
+	WSAOVERLAPPED overlapped;
+
 	WSADATA wsaData;
 	if (WSAStartup(MAKEWORD(2, 2), &wsaData) != 0)
 	{
@@ -13,19 +20,18 @@ int _tmain(int argc, _TCHAR* argv[])
 		return -1;
 	}
 
-	char message[30] = { 0, };
-
 	SOCKADDR_IN servAddr;
 	SOCKET clientSocket;
 	int strLen = 0;
 
-	clientSocket = socket(PF_INET, SOCK_STREAM, 0);
+	clientSocket = WSASocket(PF_INET, SOCK_STREAM, 0, nullptr, 0, WSA_FLAG_OVERLAPPED);
 	if (clientSocket == INVALID_SOCKET)
 	{
-		
 		std::cout << "clientSocket is wrong" <<  std::endl;
 		return -1;
 	}
+
+	
 
 	memset(&servAddr, 0, sizeof(servAddr));
 	servAddr.sin_family = AF_INET;
@@ -38,16 +44,27 @@ int _tmain(int argc, _TCHAR* argv[])
 		return -1;
 	}
 
+	event = WSACreateEvent();
+	memset(&overlapped, 0, sizeof(overlapped));
+	overlapped.hEvent = event;
 
+	databuf.len = strlen(message);
+	databuf.buf = message;
 
-	strLen = recv(clientSocket, message, sizeof(message) - 1, 0);
-	if (strLen == -1)
-		std::cout << "recv is wrong" << std::endl;
+	if (WSASend(clientSocket, &databuf, 1, &sendBytes, 0, &overlapped, nullptr) == SOCKET_ERROR)
+	{
+		std::cout << "WSASend is wrong" << WSAGetLastError() << std::endl;
+		return -1;
+	}
 
-	message[strLen] = 0;
+	puts("지금 전송 보내고 딴짓중");
 
-	std::cout << message << std::endl;
+	WSAWaitForMultipleEvents(1, &event, TRUE, WSA_INFINITE, FALSE);
+	WSAGetOverlappedResult(clientSocket, &overlapped, &sendBytes, FALSE, NULL);
 
+	printf("전송된 바이트 : %d", sendBytes);
+
+	Sleep(1000000);
 
 	WSACleanup();
 
