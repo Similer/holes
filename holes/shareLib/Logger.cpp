@@ -13,6 +13,4 @@ Logger::~Logger()
 }
 
 
-void Logger::Log(const TCHAR* str)
-{
-}
+

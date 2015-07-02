@@ -4,8 +4,16 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 12.0.30110.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "holes", "holes\holes.vcxproj", "{4143384D-53B0-4367-BD3E-B4EEBEAF1D90}"
+	ProjectSection(ProjectDependencies) = postProject
+		{499338E4-0C72-4DF5-9CDA-BD40353928E2} = {499338E4-0C72-4DF5-9CDA-BD40353928E2}
+	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "client", "client\client.vcxproj", "{73485DCD-47C6-4D53-8E40-FC146B7B7934}"
+	ProjectSection(ProjectDependencies) = postProject
+		{499338E4-0C72-4DF5-9CDA-BD40353928E2} = {499338E4-0C72-4DF5-9CDA-BD40353928E2}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "shareLib", "shareLib\shareLib.vcxproj", "{499338E4-0C72-4DF5-9CDA-BD40353928E2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +29,10 @@ Global
 		{73485DCD-47C6-4D53-8E40-FC146B7B7934}.Debug|Win32.Build.0 = Debug|Win32
 		{73485DCD-47C6-4D53-8E40-FC146B7B7934}.Release|Win32.ActiveCfg = Release|Win32
 		{73485DCD-47C6-4D53-8E40-FC146B7B7934}.Release|Win32.Build.0 = Release|Win32
+		{499338E4-0C72-4DF5-9CDA-BD40353928E2}.Debug|Win32.ActiveCfg = Debug|Win32
+		{499338E4-0C72-4DF5-9CDA-BD40353928E2}.Debug|Win32.Build.0 = Debug|Win32
+		{499338E4-0C72-4DF5-9CDA-BD40353928E2}.Release|Win32.ActiveCfg = Release|Win32
+		{499338E4-0C72-4DF5-9CDA-BD40353928E2}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

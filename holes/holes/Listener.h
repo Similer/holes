@@ -1,17 +1,19 @@
 #pragma once
 
+#include "Session.h"
+
 #define PORT		7004
 #define BACK_LOG	10
 
-class Listener
+class Listener : public Session
 {
 public:
 	Listener();
 	~Listener();
-	bool Initialize();
+
+	void Bind(int port);
+	void Listen();
 
 private:
-	SOCKET		mSocket;
-	SOCKADDR_IN mServAddr;
 };
 

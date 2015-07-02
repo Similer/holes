@@ -16,7 +16,7 @@ bool IocpCore::Initialize()
 {
 	if (WSAStartup(MAKEWORD(2, 2), &mWsaData) != 0)
 	{
-		GLogger->Log(_T("Error WSAStartUp"));
+		GLogger->Log(_T("IocpCore::Initialize WSAStartup Error : %d"), WSAGetLastError());
 		return false;
 	}
 
@@ -34,9 +34,10 @@ bool IocpCore::Initialize()
 		_beginthreadex(nullptr, 0, &Thread::GQCS, mCompletionPort, 0, nullptr);
 	}
 
-
-
-	
-
 	return true;
+}
+
+void IocpCore::RegistCompletionPort(HANDLE handle, ULONG_PTR completioKey)
+{
+	CreateIoCompletionPort(handle, mCompletionPort, completioKey, 0);
 }

@@ -27,11 +27,11 @@ int _tmain(int argc, _TCHAR* argv[])
 	clientSocket = WSASocket(PF_INET, SOCK_STREAM, 0, nullptr, 0, WSA_FLAG_OVERLAPPED);
 	if (clientSocket == INVALID_SOCKET)
 	{
-		std::cout << "clientSocket is wrong" <<  std::endl;
+		std::cout << "clientSocket is wrong" << std::endl;
 		return -1;
 	}
 
-	
+
 
 	memset(&servAddr, 0, sizeof(servAddr));
 	servAddr.sin_family = AF_INET;

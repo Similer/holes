@@ -7,6 +7,9 @@
 
 #include "targetver.h"
 
+#define WIN32_LEAN_AND_MEAN             // Exclude rarely-used stuff from Windows headers
+
+
 #include <stdio.h>
 #include <tchar.h>
 #include <vector>
@@ -15,11 +18,14 @@
 #include <process.h>
 #include <iostream>
 
-#pragma comment(lib, "shareLib.lib")
 
-#include "../shareLib/IocpCore.h"
-#include "../shareLib/Listener.h"
-#include "../shareLib/Session.h"
+#include "CommonHeader.h"
 
+
+#include "miscUtils.h"
+#include "IocpCore.h"
+#include "Session.h"
+#include "Logger.h"
+#include "Thread.h"
 
 // TODO: reference additional headers your program requires here
