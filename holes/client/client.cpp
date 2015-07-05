@@ -4,6 +4,8 @@
 #include "stdafx.h"
 
 
+#include "../protobuf/gen/PDL.pb.h"
+
 int _tmain(int argc, _TCHAR* argv[])
 {
 	WSABUF databuf;
@@ -32,6 +34,17 @@ int _tmain(int argc, _TCHAR* argv[])
 	}
 
 
+	PDL::Person ps;
+
+	byte pp[100] = { 0, };
+	
+	ps.set_id(10);
+	ps.set_name("Heello");
+
+	ps.SerializeToArray(pp, ps.ByteSize());
+
+	PDL::Person ps2;
+	ps2.ParseFromArray(pp, 10);
 
 	memset(&servAddr, 0, sizeof(servAddr));
 	servAddr.sin_family = AF_INET;
